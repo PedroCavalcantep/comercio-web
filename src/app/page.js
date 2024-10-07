@@ -1,7 +1,20 @@
+import MainPage from "./components/MainPage";
+import Menu from "./components/Menu";
+import Estoque from "./Estoque/Estoque";
+
 export default function Home() {
 	return (
 		<div>
-			<h1 className="text-center">hello world</h1>
+
+			{/* <div> <Menu/> </div> */}
+
+		<div>
+			<Estoque></Estoque>
 		</div>
+
+		{/* <div>
+		<MainPage />
+		</div> */}
+	</div>
 	)
 }
