@@ -2,6 +2,7 @@
 import { Input, Button } from '@material-tailwind/react'
 import { Card, Typography } from '@material-tailwind/react'
 import { useEffect, useState } from 'react'
+import { fetchProdutos, deleteProduto } from '../api'
 
 export default function Estoque() {
 	const TABLE_HEAD = [
@@ -18,18 +19,15 @@ export default function Estoque() {
 	const [TABLE_ROWS, SETTABLE_ROWS] = useState([])
 
 	useEffect(() => {
-		fetch('http://localhost:8081/bazinga', { method: 'GET' })
-			.then((response) => {
-				if (response.ok) {
-					return response.json()
-				} else {
-					throw new Error('Erro ao carregar produtos')
-				}
-			})
-			.then((data) => {
-				SETTABLE_ROWS(data)
-			})
-			.catch((err) => console.log(err))
+		const carregarProdutos = async () => {
+			try {
+				const produtos = await fetchProdutos()
+				SETTABLE_ROWS(produtos)
+			} catch (error) {
+				console.error('Erro ao carregar produtos', error)
+			}
+		}
+		carregarProdutos()
 	}, [])
 
 	return (
@@ -105,7 +103,21 @@ export default function Estoque() {
 												</Typography>
 											</td>
 											<td className={classes}>
-												<Button color="red">remover</Button>
+												<Button
+													color="red"
+													onClick={async () => {
+														try {
+															await deleteProduto(codProd)
+															SETTABLE_ROWS((prevRows) =>
+																prevRows.filter((produto) => produto.codProd !== codProd)
+															)
+														} catch (error) {
+															console.error('Erro ao deletar produto', error)
+														}
+													}}
+												>
+													remover
+												</Button>
 											</td>
 											<td className={classes}>
 												<Button color="blue">editar</Button>
