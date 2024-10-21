@@ -19,7 +19,6 @@ export default function Caixa() {
 						</p>
 						<Input
 							type="text"
-							type
 							size="lg"
 							className="rounded-b-md rounded-t-none  bg-white !border-t-blue-gray-200 focus:!border-t-gray-900"
 						/>
@@ -31,7 +30,6 @@ export default function Caixa() {
 						</p>
 						<Input
 							type="text"
-							type
 							size="lg"
 							className="rounded-b-md rounded-t-none  bg-white !border-t-blue-gray-200 focus:!border-t-gray-900"
 						/>
@@ -43,7 +41,6 @@ export default function Caixa() {
 						</p>
 						<Input
 							type="text"
-							type
 							size="lg"
 							className="rounded-b-md rounded-t-none  bg-white !border-t-blue-gray-200 focus:!border-t-gray-900"
 						/>
