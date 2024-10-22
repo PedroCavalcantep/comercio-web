@@ -27,6 +27,19 @@ export const deleteProduto = async (id) => {
 
 //Usuario
 
+export const login = async (login, senha) => {
+	try {
+		const response = await fetch(url + `/usuario/login?login=${login}&senha=${senha}`)
+		if (!response) {
+			throw new Error('Usuario não encontrado')
+		}
+		return await response.json()
+	} catch (error) {
+		console.log(error)
+		return error
+	}
+}
+
 export const getUsuarios = async () => {
 	try {
 		const response = await fetch(url + '/usuario', { method: 'GET' })
